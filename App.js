@@ -10,6 +10,7 @@ export default function App() {
   const motionState = useRef('up');
   const subscription = useRef(null);
   const [permission, requestPermission] = useCameraPermissions();
+  const [facing, setFacing] = useState('back');
 
   useEffect(() => {
     if (Platform.OS === 'web') {
@@ -81,7 +82,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.cameraContainer}>
-        <CameraView style={styles.camera} facing="back" />
+        <CameraView style={styles.camera} facing={facing} />
         <View style={styles.overlay} pointerEvents="box-none">
           <View style={styles.counterBox}>
             <Text style={styles.counterLabel}>Pushups</Text>
@@ -108,6 +109,14 @@ export default function App() {
                 }}
               >
                 <Text style={styles.buttonText}>Reset</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.button, styles.buttonCamera]}
+                onPress={() => {
+                  setFacing((current) => (current === 'back' ? 'front' : 'back'));
+                }}
+              >
+                <Text style={styles.buttonText}>Camera</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -183,6 +192,9 @@ const styles = StyleSheet.create({
   },
   buttonReset: {
     backgroundColor: '#828282',
+  },
+  buttonCamera: {
+    backgroundColor: '#4a90e2',
   },
   buttonText: {
     color: '#fff',
