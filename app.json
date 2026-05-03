@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Pushup Counter",
+    "slug": "pushup-counter",
+    "version": "1.0.0",
+    "sdkVersion": "54.0.0",
+    "platforms": ["ios", "android", "web"],
+    "orientation": "portrait",
+    "splash": {
+      "backgroundColor": "#ffffff"
+    },
+    "experiments": {
+      "bridgeless": false
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"]
+  }
+}

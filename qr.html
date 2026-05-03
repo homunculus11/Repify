@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pushup Counter QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .qr-container {
+            margin: 20px auto;
+            max-width: 300px;
+        }
+        .url {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pushup Counter App</h1>
+    <p>Scan this QR code with Expo Go on your phone to test the app:</p>
+    <div class="qr-container">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=exp://192.168.0.75:8084" alt="QR Code for Expo App">
+    </div>
+    <p class="url">Or manually enter: exp://192.168.0.75:8084</p>
+    <p>Make sure your phone and PC are on the same Wi-Fi network.</p>
+</body>
+</html>
