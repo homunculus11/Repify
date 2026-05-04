@@ -22,17 +22,17 @@
 </head>
 <body>
     <h1>Pushup Counter App</h1>
-    <p>Use the web app URL below or scan the QR code to open it in a browser or a device that supports HTTP URLs:</p>
+    <p>Use the Expo link below or scan the QR code to open the app in Expo Go:</p>
     <div class="qr-container">
-        <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=http://localhost:8082" alt="QR Code for Web App">
+        <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=exp://192.168.0.75:8084" alt="QR Code for Expo App">
     </div>
     <div class="input-row">
-        <label for="appUrl">Web App URL:</label>
-        <input id="appUrl" type="text" placeholder="http://<your-ip>:8082" />
+        <label for="appUrl">Expo URL:</label>
+        <input id="appUrl" type="text" placeholder="exp://<your-ip>:8084" />
         <button id="generateButton">Generate QR</button>
     </div>
-    <p class="url">Or manually enter your web URL above.</p>
-    <p>Make sure your phone and PC are on the same Wi-Fi network if using a mobile browser.</p>
+    <p class="url">Or manually enter your Expo URL above.</p>
+    <p>Make sure your phone and PC are on the same Wi-Fi network.</p>
     <script>
         const appUrlInput = document.getElementById('appUrl');
         const qrImage = document.getElementById('qrImage');
@@ -43,11 +43,7 @@
             const queryUrl = params.get('url');
             if (queryUrl) return queryUrl;
 
-            if (window.location.protocol.startsWith('http') && window.location.host) {
-                return `${window.location.protocol}//${window.location.host}`;
-            }
-
-            return 'http://localhost:8082';
+            return 'exp://192.168.0.75:8084';
         };
 
         const updateQr = (url) => {
