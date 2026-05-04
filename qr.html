@@ -22,11 +22,52 @@
 </head>
 <body>
     <h1>Pushup Counter App</h1>
-    <p>Scan this QR code with Expo Go on your phone to test the app:</p>
+    <p>Use the web app URL below or scan the QR code to open it in a browser or a device that supports HTTP URLs:</p>
     <div class="qr-container">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=exp://192.168.0.75:8084" alt="QR Code for Expo App">
+        <img id="qrImage" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=http://localhost:8082" alt="QR Code for Web App">
     </div>
-    <p class="url">Or manually enter: exp://192.168.0.75:8084</p>
-    <p>Make sure your phone and PC are on the same Wi-Fi network.</p>
+    <div class="input-row">
+        <label for="appUrl">Web App URL:</label>
+        <input id="appUrl" type="text" placeholder="http://<your-ip>:8082" />
+        <button id="generateButton">Generate QR</button>
+    </div>
+    <p class="url">Or manually enter your web URL above.</p>
+    <p>Make sure your phone and PC are on the same Wi-Fi network if using a mobile browser.</p>
+    <script>
+        const appUrlInput = document.getElementById('appUrl');
+        const qrImage = document.getElementById('qrImage');
+        const generateButton = document.getElementById('generateButton');
+
+        const getDefaultUrl = () => {
+            const params = new URLSearchParams(window.location.search);
+            const queryUrl = params.get('url');
+            if (queryUrl) return queryUrl;
+
+            if (window.location.protocol.startsWith('http') && window.location.host) {
+                return `${window.location.protocol}//${window.location.host}`;
+            }
+
+            return 'http://localhost:8082';
+        };
+
+        const updateQr = (url) => {
+            const targetUrl = (url || appUrlInput.value).trim();
+            if (!targetUrl) return;
+            appUrlInput.value = targetUrl;
+            qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(targetUrl);
+        };
+
+        const defaultUrl = getDefaultUrl();
+        updateQr(defaultUrl);
+
+        generateButton.addEventListener('click', () => updateQr());
+
+        appUrlInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                updateQr();
+            }
+        });
+    </script>
 </body>
 </html>
