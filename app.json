@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Pushup Counter",
-    "slug": "pushup-counter",
+    "name": "Repify",
+    "slug": "repify",
     "version": "1.0.0",
     "sdkVersion": "54.0.0",
     "platforms": ["ios", "android", "web"],
